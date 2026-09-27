@@ -1,0 +1,28 @@
+{
+  "id": "wire",
+  "name": "Jumper wire",
+  "prefix": "W",
+  "footprint": {
+    "kind": "two-lead",
+    "span": [
+      0.9,
+      80
+    ]
+  },
+  "pins": [
+    {
+      "id": "a",
+      "name": "end"
+    },
+    {
+      "id": "b",
+      "name": "end"
+    }
+  ],
+  "model": {
+    "kind": "wire"
+  },
+  "draw": "wire",
+  "card": "wire",
+  "label": "Jumper wire"
+}

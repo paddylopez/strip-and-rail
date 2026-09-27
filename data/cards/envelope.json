@@ -1,0 +1,25 @@
+{
+  "id": "envelope",
+  "name": "Envelope Detector",
+  "cost": "free",
+  "frame": "technique",
+  "type": "Technique — Envelope",
+  "rarity": "R",
+  "art": "envelope",
+  "rules": [
+    [
+      "Strip the offset",
+      "C1 + R1 leave just the sound, swinging around 0 V."
+    ],
+    [
+      "Keep the peaks",
+      "D1 lets each positive swing top up C2."
+    ],
+    [
+      "Smooth",
+      "R2 drains C2 slowly (R2 × C2 ≈ 0.5 s): a level that follows how loud, not the wave itself."
+    ]
+  ],
+  "stats": "τ = R2 × C2",
+  "flavor": "The circuit version of a moving average."
+}

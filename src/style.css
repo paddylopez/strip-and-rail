@@ -1,0 +1,278 @@
+/* Strip & Rail: one deliberate look, an anti-static bench mat under a lamp. Single theme by choice:
+   every color is set explicitly, so it reads the same on any host background. */
+:root {
+  color-scheme: dark;
+  --mat: #1b282b;          /* the ESD mat */
+  --mat-dot: #223338;
+  --panel: #111a1c;
+  --panel-2: #172326;
+  --line: #2b3d41;
+  --ink: #e4ece8;
+  --muted: #8ea39f;
+  --amber: #ffb000;        /* the bench supply's display */
+  --amber-dim: #6b4a00;
+  --good: #3ddc84;
+  --bad: #ff5a4f;
+  --paper: #f7f5ee;        /* schematics sit on paper */
+  --display: "Silkscreen", "Courier New", monospace;
+  --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", monospace;
+}
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--mat); color: var(--ink); font: 15px/1.5 var(--body);
+  background-image: radial-gradient(var(--mat-dot) 1px, transparent 1.2px); background-size: 14px 14px;
+}
+.app { display: grid; grid-template-rows: auto 1fr; min-height: 100%; padding-inline: 16px; box-sizing: border-box; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+/* header: the name and the level strip */
+header.top { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; padding-block: 14px 10px; }
+.logo { font: 22px/1 var(--display); letter-spacing: 0.04em; color: var(--amber); white-space: nowrap; }
+.logo small { display: block; font: 11px/1.4 var(--body); color: var(--muted); letter-spacing: 0.02em; }
+.levels { display: grid; gap: 6px; flex: 1; min-width: 0; }
+.levelrow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.levelrow .rowlbl { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-right: 2px; }
+.levels button.import { border-style: dashed; color: var(--amber); }
+body.dropping .app { outline: 3px dashed var(--amber); outline-offset: -8px; }
+table.netlist { width: 100%; border-collapse: collapse; font-size: 12.5px; color: var(--ink); }
+table.netlist th { text-align: left; font: 600 12px var(--mono); color: var(--amber); padding: 3px 8px 3px 0; vertical-align: top; white-space: nowrap; }
+table.netlist td { padding: 3px 0; border-bottom: 1px solid var(--line); }
+table.netlist code { font: 12px var(--mono); background: var(--panel-2); border: 1px solid var(--line); border-radius: 3px; padding: 0 4px; margin: 1px 2px 1px 0; display: inline-block; }
+ul.errs { margin: 6px 0; padding-left: 18px; } ul.errs code { color: var(--amber); }
+.levels button {
+  display: flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 4px;
+  background: var(--panel); border: 1px solid var(--line); font-size: 13px;
+}
+.levels button .n { font: 12px/1 var(--display); color: var(--muted); }
+.levels button.done .n { color: var(--good); }
+.levels button[aria-current="true"] { border-color: var(--amber); background: var(--panel-2); }
+
+/* the two columns */
+/* three columns on a wide screen (calculators | board | level + cards); two, then one, as it narrows */
+.main { display: grid; gap: 18px; align-items: start; padding-bottom: 24px;
+  grid-template-columns: minmax(0, 1fr) 340px; grid-template-areas: "work side" "calcs side"; }
+.main > .work { grid-area: work; } .main > .side { grid-area: side; } .main > .calcs { grid-area: calcs; }
+@media (min-width: 1600px) { .main { grid-template-columns: 290px minmax(0, 1fr) 340px; grid-template-areas: "calcs work side"; } }
+@media (max-width: 1000px) { .main { grid-template-columns: minmax(0, 1fr); grid-template-areas: "work" "side" "calcs"; } }
+
+/* toolbar over the board */
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+.tool {
+  display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 5px;
+  background: var(--panel); border: 1px solid var(--line); font-size: 14px;
+}
+.tool[aria-pressed="true"] { border-color: var(--amber); box-shadow: inset 0 0 0 1px var(--amber); }
+.tool kbd { font: 11px var(--mono); color: var(--muted); }
+.tool.power { font-weight: 700; }
+.tool.power[aria-pressed="true"] { background: #3a2a00; color: var(--amber); }
+.tool.check { margin-left: auto; background: var(--amber); color: #1a1200; border-color: var(--amber); font-weight: 700; }
+.swatches { display: inline-flex; gap: 4px; }
+.swatches button { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--panel); padding: 0; }
+.swatches button[aria-pressed="true"] { border-color: var(--ink); }
+
+.stage { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px; overflow-x: auto; }
+.stage svg { display: block; width: 100%; min-width: 640px; height: auto; touch-action: manipulation; user-select: none; }
+.statusline { font: 13px/1.4 var(--mono); color: var(--muted); padding: 8px 2px 0; min-height: 1.4em; }
+.statusline.bad { color: var(--bad); }
+
+/* below the board: meter and the check result */
+.readouts { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 12px; margin-top: 12px; }
+@media (max-width: 640px) { .readouts { grid-template-columns: minmax(0, 1fr); } }
+.meter { background: #0b1112; border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.meter .lcd { font: 28px/1.1 var(--mono); color: #bfe8d0; font-variant-numeric: tabular-nums; }
+.meter .lcd.beep { color: var(--good); }
+.meter .sub { font-size: 12px; color: var(--muted); }
+.result { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+.result h3 { margin: 0 0 4px; font-size: 15px; }
+.result.ok { border-color: var(--good); }
+.result.ok h3 { color: var(--good); }
+.result.fail h3 { color: var(--bad); }
+.result p { margin: 4px 0; }
+.result .hint { border-left: 3px solid var(--amber); padding-left: 10px; margin-top: 8px; }
+.result .hint p + p { color: var(--muted); }
+.result .actions { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.result .actions button { padding: 6px 12px; border-radius: 5px; background: var(--panel-2); border: 1px solid var(--line); }
+.result .actions button.primary { background: var(--good); color: #062012; border-color: var(--good); font-weight: 700; }
+
+/* sidebar */
+aside { display: grid; gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; }
+.card h2 { margin: 0 0 6px; font: 15px/1.3 var(--display); letter-spacing: 0.03em; color: var(--amber); text-wrap: balance; }
+.card h2 .lv { color: var(--muted); }
+.card ol { margin: 0; padding-left: 18px; }
+.card ol li + li { margin-top: 6px; }
+.eyebrow { font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin: 0 0 6px; }
+figure.schem { margin: 10px 0 0; background: var(--paper); border-radius: 6px; padding: 8px; cursor: zoom-in; }
+figure.schem img { display: block; width: 100%; height: auto; }
+figure.schem.big { position: fixed; inset: 5vh 5vw; z-index: 20; display: grid; place-items: center; cursor: zoom-out; box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6); }
+figure.schem.big img { max-height: 85vh; width: auto; max-width: 100%; }
+figcaption { font-size: 12px; color: #555; margin-top: 4px; }
+
+.newpart { display: grid; grid-template-columns: 86px minmax(0, 1fr); gap: 10px; align-items: center; }
+.newpart + .newpart { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--line); }
+.newpart .sym { background: var(--paper); border-radius: 5px; padding: 6px; }
+.newpart .sym img { display: block; width: 100%; height: auto; }
+.newpart b { display: block; }
+.newpart p { margin: 2px 0 0; font-size: 13.5px; color: #c6d3cf; }
+
+.tray { margin-top: 10px; }
+.bin { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+.bin button {
+  position: relative; display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: center; gap: 6px;
+  text-align: left; padding: 6px 8px; border-radius: 5px; background: var(--panel-2); border: 1px solid var(--line); font-size: 13px;
+}
+.bin button[aria-pressed="true"] { border-color: var(--amber); box-shadow: inset 0 0 0 1px var(--amber); }
+.bin button:disabled { opacity: 0.4; cursor: default; }
+.bin .count { font: 11px var(--mono); color: var(--muted); }
+.bin .new { position: absolute; top: -7px; right: 6px; font: 9px/1 var(--display); background: var(--amber); color: #1a1200; padding: 3px 4px; border-radius: 3px; }
+.bin svg { width: 30px; height: 18px; }
+.lesson { font-size: 13.5px; color: #c6d3cf; }
+.knobs label { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; align-items: center; font: 13px var(--mono); }
+.knobs input { width: 100%; accent-color: var(--amber); }
+
+/* board svg pieces */
+.hole { fill: #3b3a36; }
+.strip-hi { fill: var(--amber); fill-opacity: 0.22; }
+.hint-ring { fill: none; stroke: var(--amber); stroke-width: 2.5; animation: pulse 1.1s ease-in-out infinite; }
+@keyframes pulse { 50% { stroke-opacity: 0.25; } }
+.part { cursor: pointer; }
+.part.locked { cursor: default; }
+.smoke { animation: smoke 1.6s ease-out forwards; }
+@keyframes smoke { from { opacity: 0.9; transform: translateY(0) scale(0.6); } to { opacity: 0; transform: translateY(-26px) scale(1.6); } }
+@media (prefers-reduced-motion: reduce) { .hint-ring, .smoke { animation: none; } }
+
+/* ---- cards: every part is a collectible card (frame colour = kind, gem = rarity) ---- */
+.mtg {
+  --frame: #9a958a; box-sizing: border-box; width: 100%; max-width: 320px; aspect-ratio: 63 / 88; margin-inline: auto;
+  display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 6px; padding: 9px;
+  background: var(--frame); border-radius: 14px; color: #1d1a14; font-size: 12.5px; line-height: 1.35;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5), inset 0 0 0 2px rgba(0, 0, 0, 0.35), inset 0 0 0 5px rgba(255, 255, 255, 0.08);
+}
+.f-basic { --frame: #9a958a; } .f-passive { --frame: #a8773a; } .f-semi { --frame: #a8403a; }
+.f-switch { --frame: #3f7a55; } .f-ic { --frame: #30353c; } .f-tool { --frame: #b8871a; } .f-technique { --frame: #4b4f93; }
+.mtg-name, .mtg-type { background: #efe6d2; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3); }
+.mtg-name { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 4px 9px; border-radius: 9px 9px 4px 4px; font-weight: 700; font-size: 14px; }
+.mtg-cost { font: 600 10.5px var(--mono); background: #1d1a14; color: #efe6d2; border-radius: 10px; padding: 1px 7px; white-space: nowrap; }
+/* no overflow:hidden here: it would let the grid squeeze the art when a card's text runs long */
+.mtg-art { line-height: 0; min-height: min-content; }
+.mtg-art svg { display: block; width: 100%; height: auto; border-radius: 3px; box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.45); }
+.mtg-type { display: flex; align-items: center; gap: 6px; padding: 3px 8px; border-radius: 4px; font-weight: 700; font-size: 11px; }
+.mtg-type > span:first-child { flex: 1; }
+.mtg-sym { height: 16px; width: auto; background: #fff; border-radius: 3px; padding: 1px 3px; }
+.mtg-rar { font-size: 13px; }
+.r-B { color: #77736a; } .r-C { color: #1d1a14; } .r-U { color: #8fa4b4; text-shadow: 0 0 1px #000, 0 0 1px #000; } .r-R { color: #e0ac1c; text-shadow: 0 0 1px #000, 0 0 1px #000; }
+.mtg-text { background: #f3ecdc; border-radius: 4px; padding: 7px 9px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2); }
+.mtg-text p { margin: 0 0 5px; }
+.mtg-text i { color: #4d4538; }
+.mtg-flavor { font-style: italic; color: #5d5445; border-top: 1px solid rgba(0, 0, 0, 0.15); padding-top: 5px; margin-top: 7px !important; }
+.mtg-foot { display: flex; justify-content: space-between; align-items: center; gap: 6px; font: 9.5px var(--mono); color: rgba(255, 255, 255, 0.82); }
+.f-basic .mtg-foot, .f-tool .mtg-foot { color: rgba(0, 0, 0, 0.7); }
+.mtg-stats { background: #efe6d2; color: #1d1a14; font: 700 11px var(--mono); padding: 2px 8px; border-radius: 7px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.35); white-space: nowrap; }
+.mtg-back { background: repeating-linear-gradient(45deg, #1b282b 0 10px, #1f2f33 10px 20px); display: grid; place-items: center; border: 7px solid #0f1719; }
+.mtg-back-in { display: grid; gap: 12px; text-align: center; font: 22px/1.1 var(--display); color: var(--amber); }
+.mtg-back-in small { font: 12px/1.3 var(--body); color: var(--muted); }
+.cardslot { margin-top: 4px; }
+.pager { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+.pager button, .linkish { padding: 4px 12px; border-radius: 5px; background: var(--panel-2); border: 1px solid var(--line); }
+.pager button:disabled { opacity: 0.35; cursor: default; }
+.linkish { margin-top: 10px; font-size: 13px; }
+
+.topbtns { margin-left: auto; display: flex; gap: 8px; }
+.binder-btn { padding: 6px 12px; border-radius: 5px; background: var(--panel); border: 1px solid var(--amber); color: var(--amber); font: 13px/1 var(--display); }
+.binder-btn span { font: 11px var(--mono); color: var(--muted); }
+.binder { position: fixed; inset: 0; z-index: 30; background: rgba(8, 13, 14, 0.95); backdrop-filter: blur(3px); overflow-y: auto; padding-block: 24px; padding-inline: 16px; }
+.binder-in { max-width: 1200px; margin: 0 auto; }
+.binder-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; margin-bottom: 16px; }
+.binder-head h2 { margin: 0; font: 22px var(--display); color: var(--amber); }
+.binder-head p { margin: 0; color: var(--muted); flex: 1; min-width: 200px; }
+.binder-head button { padding: 6px 14px; border-radius: 5px; background: var(--panel); border: 1px solid var(--line); }
+.binder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; }
+.modes { display: flex; gap: 5px; margin-top: 8px; }
+.modes button { padding: 3px 12px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); font: 600 12px var(--mono); }
+.modes button[aria-pressed="true"] { border-color: var(--amber); color: var(--amber); }
+.modes #fuse { border-color: var(--bad); color: var(--bad); }
+
+/* leg and pin labels on the placed parts (Labels toggle, L) */
+.pinlbl { font: 700 7px var(--mono); fill: #2a2a2a; paint-order: stroke; stroke: #efece3; stroke-width: 2.4px; stroke-linejoin: round; }
+.pinlbl.pos { fill: #b3261e; }
+.pinlbl.chip { fill: #d0d0d0; stroke: #1c1c1c; stroke-width: 2.2px; font-size: 6.5px; }   /* dark halo: readable over any wire */
+.pinlbl.chip.one { fill: var(--amber); }
+svg.nolabels .pinlbl { display: none; }
+
+/* the boss level */
+.levels button.boss { border-color: #7a2b28; }
+.levels button.boss .n { color: var(--bad); }
+.card h2 .boss { color: var(--bad); }
+
+/* calculators */
+.calcs { display: grid; gap: 10px; align-content: start; }
+.calcs > .eyebrow { margin: 0; }
+.calc { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.calc h3 { margin: 0; font: 13px/1.3 var(--display); color: var(--amber); letter-spacing: 0.03em; }
+.calc .formula { margin: 2px 0 8px; font: 12px var(--mono); color: var(--muted); }
+.calc-in { display: grid; grid-template-columns: minmax(0, 1fr) 104px; gap: 5px 8px; align-items: center; font-size: 13px; }
+.unitbox { display: flex; align-items: center; background: #0b1112; border: 1px solid var(--line); border-radius: 4px; }
+.unitbox:focus-within { border-color: var(--amber); }
+.unitbox input { width: 100%; min-width: 0; background: transparent; border: 0; color: var(--ink); font: 13px var(--mono); padding: 4px 6px; outline: none; }
+.unitbox i { font: normal 12px var(--mono); color: var(--muted); padding-right: 6px; }
+.calc-out { margin-top: 8px; display: grid; gap: 2px; font-variant-numeric: tabular-nums; }
+.calc-out div { display: flex; justify-content: space-between; gap: 8px; font-size: 12.5px; }
+.calc-out span { color: var(--muted); }
+.calc-out b { font: 600 13px var(--mono); text-align: right; }
+.calc-out .big b { font-size: 20px; color: #bfe8d0; }
+.calc-out .bad, .calc-out .dim { color: var(--muted); } .calc-out .bad span { color: var(--bad); }
+.calc .why { margin-top: 8px; padding: 4px 10px; border-radius: 5px; background: var(--panel-2); border: 1px solid var(--line); font-size: 12.5px; }
+.calc.locked { display: flex; justify-content: space-between; gap: 8px; padding: 7px 12px; font-size: 12.5px; color: var(--muted); border-style: dashed; }
+.calc.locked b { font-weight: 400; color: #56666a; }
+
+/* the Rulebook */
+.rb-body { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(360px, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 1100px) { .rb-body { grid-template-columns: minmax(0, 1fr); } }
+.rb-graph { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px; overflow-x: auto; line-height: 0; }
+.rb-graph svg { display: block; width: 100%; height: auto; }
+.gnode { cursor: pointer; } .gnode.locked { cursor: default; }
+.gnode:focus-visible rect { stroke: var(--amber); stroke-width: 3; }
+.rb-rule { background: #f3ecdc; color: #1d1a14; border-radius: 10px; padding: 16px 18px; max-height: calc(100vh - 150px); overflow-y: auto; }
+.rb-rule h3 { margin: 0 0 4px; font-size: 20px; }
+.rb-kind { margin: 0; font: 700 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.k-definition { color: #23607f; } .k-law { color: #2f6a45; } .k-theorem { color: #8a6412; }
+.rb-short { font: 600 15px var(--mono); margin: 4px 0 8px; }
+.rb-given { background: rgba(0, 0, 0, 0.05); padding: 6px 10px; border-radius: 6px; }
+/* set explicitly: tables don't inherit colour or font from the page in quirks mode (the file opened from disk) */
+table.proof { width: 100%; border-collapse: collapse; margin: 10px 0; font: 13.5px/1.4 var(--body); color: #1d1a14; }
+table.proof th { text-align: left; font: 700 11px var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: #6a604e; border-bottom: 2px solid #1d1a14; padding: 4px 6px; }
+table.proof td { border-bottom: 1px solid rgba(0, 0, 0, 0.12); padding: 6px; vertical-align: top; }
+table.proof td:first-child { font: 12px var(--mono); color: #6a604e; width: 1.5em; }
+table.proof td:nth-child(2) { font-family: var(--mono); font-size: 13px; width: 52%; }
+table.proof del { text-decoration-color: #c0392b; text-decoration-thickness: 2px; }
+.rchip { display: inline-block; font: 600 12px var(--body); border-radius: 10px; padding: 1px 8px; margin: 1px 0; border: 1px solid currentColor; background: rgba(255, 255, 255, 0.6); cursor: pointer; }
+.rchip.locked { color: #8a8272; cursor: default; }
+.rb-example { border-left: 3px solid #b8871a; padding-left: 10px; }
+.rb-uses { font-size: 13px; }
+.rb-fig { margin: 12px 0; background: #111a1c; border-radius: 8px; padding: 10px; color: var(--ink); }
+.rb-fig svg { display: block; width: 100%; height: auto; }
+.rb-fig label { display: block; font: 12px var(--mono); margin-top: 6px; }
+.rb-fig input { width: 100%; accent-color: var(--amber); }
+.rb-fig figcaption { font-size: 13px; color: #c6d3cf; margin-top: 4px; }
+
+/* the logo: Ohm's law triangle. Hover or focus a letter to "cover" it; the tagline shows what's left */
+.brand { display: flex; align-items: center; gap: 12px; }
+.tri { width: 58px; height: auto; flex: none; overflow: visible; }
+.tri text { font: 17px var(--display); fill: var(--ink); text-anchor: middle; pointer-events: none; transition: fill 0.12s; }
+.tri g { cursor: pointer; outline: none; }
+.tri g:hover text, .tri g:focus-visible text { fill: #3a4f53; }
+.tri g:hover path, .tri g:hover rect, .tri g:focus-visible path, .tri g:focus-visible rect { fill: rgba(255, 176, 0, 0.22); }   /* the "finger" covering it */
+.tri.covering text { fill: #ffb000; }
+.tri.covering g:hover text, .tri.covering g:focus-visible text { fill: #3a4f53; }
+.logo small.formula { color: var(--amber); font: 12px var(--mono); }
+
+.sound { display: flex; gap: 5px; align-items: center; margin-top: 8px; font: 13px var(--mono); }
+.sound span { width: 44px; color: var(--muted); }
+.sound button { padding: 3px 12px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); font: 600 12px var(--mono); }
+.sound button[aria-checked="true"] { border-color: var(--amber); color: var(--amber); }
+
+#draft { display: block; width: 100%; box-sizing: border-box; min-height: 260px; margin-top: 6px; resize: vertical;
+  font: 12px/1.45 var(--mono); color: var(--ink); background: #0b1112; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; }
+#draft:focus { outline: 2px solid var(--amber); }

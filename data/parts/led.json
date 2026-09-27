@@ -1,0 +1,78 @@
+{
+  "id": "led",
+  "name": "LED",
+  "prefix": "LED",
+  "footprint": {
+    "kind": "two-lead",
+    "span": [
+      0.9,
+      3.5
+    ]
+  },
+  "pins": [
+    {
+      "id": "A",
+      "name": "long leg (anode, +)",
+      "label": "+",
+      "positive": true
+    },
+    {
+      "id": "K",
+      "name": "short leg (cathode, −)",
+      "label": "−"
+    }
+  ],
+  "params": {
+    "color": {
+      "options": {
+        "red": {
+          "name": "Red",
+          "vf": 2.0,
+          "rgb": [
+            255,
+            45,
+            35
+          ]
+        },
+        "yellow": {
+          "name": "Yellow",
+          "vf": 2.05,
+          "rgb": [
+            255,
+            196,
+            0
+          ]
+        },
+        "green": {
+          "name": "Green",
+          "vf": 2.15,
+          "rgb": [
+            40,
+            230,
+            70
+          ]
+        },
+        "blue": {
+          "name": "Blue",
+          "vf": 3.0,
+          "rgb": [
+            40,
+            120,
+            255
+          ]
+        }
+      }
+    }
+  },
+  "model": {
+    "kind": "led",
+    "rs": 10,
+    "n": 2,
+    "iMax": 0.03,
+    "iBurn": 0.045,
+    "_comment": "Shockley diode + series R; vf is the forward voltage at 10 mA; burns out above iBurn for 20 ms"
+  },
+  "draw": "led",
+  "card": "led",
+  "label": "{color} LED"
+}

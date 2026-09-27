@@ -1,0 +1,21 @@
+{
+  "id": "series",
+  "name": "Series",
+  "cost": "free",
+  "frame": "technique",
+  "type": "Technique — Series circuit",
+  "rarity": "C",
+  "art": "series",
+  "rules": [
+    [
+      "One path",
+      "Every part in the loop carries the same current."
+    ],
+    [
+      "Voltages add",
+      "Around the loop, they sum to the supply."
+    ]
+  ],
+  "stats": "I same · V adds",
+  "flavor": "One road, no exits."
+}

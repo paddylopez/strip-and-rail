@@ -1,0 +1,20 @@
+{
+  "id": "wire",
+  "name": "Jumper Wire",
+  "cost": "≈ 1¢",
+  "frame": "basic",
+  "type": "Basic — Wire",
+  "rarity": "B",
+  "art": "wire",
+  "rules": [
+    [
+      "Joins",
+      "Both ends become one strip. Its resistance is too small to count."
+    ],
+    [
+      "Colour is for you, not the circuit: red for +, black for −."
+    ]
+  ],
+  "stats": "0 Ω",
+  "flavor": "Tap: add continuity."
+}

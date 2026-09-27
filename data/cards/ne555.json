@@ -1,0 +1,25 @@
+{
+  "id": "ne555",
+  "name": "555 Timer",
+  "cost": "≈ 30¢",
+  "frame": "ic",
+  "type": "Integrated circuit — Timer",
+  "rarity": "R",
+  "art": "ne555",
+  "symbol": "sym_ne555",
+  "rules": [
+    [
+      "Straddles",
+      "Across the channel, notch left: pin 1 bottom-left, pin 8 straight above it."
+    ],
+    [
+      "Astable",
+      "Pins 2 and 6 watch a capacitor. Above ⅔ VCC: output LOW, pin 7 drains it. Below ⅓ VCC: output HIGH again."
+    ],
+    [
+      "Pin 4 (RESET) must be tied high to run."
+    ]
+  ],
+  "stats": "4.5–16 V · 200 mA",
+  "flavor": "Designed by Hans Camenzind in 1971; still one of the most-made chips ever."
+}

@@ -1,0 +1,54 @@
+{
+  "id": "afterglow",
+  "title": "Afterglow",
+  "schematic": "afterglow",
+  "cards": [
+    {
+      "id": "electrolytic",
+      "value": 0.001
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.1
+  },
+  "brief": [
+    "A capacitor is a bucket for charge. While the button is held, the supply fills it and lights the LED. Let go, and the capacitor keeps the LED lit until it drains.",
+    "The electrolytic is polarised: its + leg (the long one) goes on the side the button feeds, its striped − side to ground.",
+    "Build it, power up, then press and release the button on the board."
+  ],
+  "lesson": "Charge = C × V: 1000 µF at 5 V holds 5 millicoulombs, about half a second of a 9 mA LED. Turn on Probe view (V) and watch the capacitor's voltage sag as it drains.",
+  "bin": [
+    {
+      "type": "button",
+      "count": 1
+    },
+    {
+      "type": "resistor",
+      "value": 330,
+      "count": 1
+    },
+    {
+      "type": "electrolytic",
+      "value": 0.001,
+      "count": 1
+    },
+    {
+      "type": "led",
+      "color": "red",
+      "count": 2
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": {
+    "kind": "afterglow",
+    "hold": 0.5,
+    "min": 0.004,
+    "max": 0.025,
+    "minGlow": 0.3,
+    "maxGlow": 10
+  }
+}

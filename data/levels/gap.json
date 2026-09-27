@@ -1,0 +1,79 @@
+{
+  "id": "gap",
+  "title": "Across the gap",
+  "schematic": "light",
+  "cards": [
+    {
+      "id": "meter"
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.1
+  },
+  "brief": [
+    "Someone built the first circuit on the bottom half of the board, powered it up, and it's dark. The parts are glued down.",
+    "Find out why. The meter will tell you: in continuity mode it beeps when two holes are connected.",
+    "Fix it with wires only."
+  ],
+  "lesson": "The top and bottom rail pairs are separate strips. Nothing reaches the bottom rails until you bridge them.",
+  "bin": [
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "preset": [
+    {
+      "id": "W1",
+      "type": "wire",
+      "color": "red",
+      "pins": {
+        "a": "PSU.+",
+        "b": "T+5"
+      }
+    },
+    {
+      "id": "W2",
+      "type": "wire",
+      "color": "black",
+      "pins": {
+        "a": "PSU.-",
+        "b": "T-6"
+      }
+    },
+    {
+      "id": "R1",
+      "type": "resistor",
+      "value": 330,
+      "pins": {
+        "1": "B+22",
+        "2": "j26"
+      }
+    },
+    {
+      "id": "LED1",
+      "type": "led",
+      "color": "red",
+      "pins": {
+        "A": "h26",
+        "K": "h28"
+      }
+    },
+    {
+      "id": "W3",
+      "type": "wire",
+      "color": "black",
+      "pins": {
+        "a": "j28",
+        "b": "B-29"
+      }
+    }
+  ],
+  "goal": {
+    "kind": "lit",
+    "count": 1,
+    "min": 0.004,
+    "max": 0.025
+  }
+}

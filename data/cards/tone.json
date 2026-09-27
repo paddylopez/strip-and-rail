@@ -1,0 +1,24 @@
+{
+  "id": "tone",
+  "name": "Tone Source",
+  "cost": "≈ $8",
+  "frame": "ic",
+  "type": "Module — Microphone (stand-in)",
+  "rarity": "U",
+  "art": "tone",
+  "rules": [
+    [
+      "Stand-in",
+      "Plays what the MAX9814 mic breakout would hear: a 300 Hz tone on a 1.25 V offset."
+    ],
+    [
+      "Sound",
+      "Off, talk (0.2 V) or horn (1 V): choose it in the parts panel while the power's on."
+    ],
+    [
+      "Powered from VDD (2.7–5.5 V), like the real breakout."
+    ]
+  ],
+  "stats": "1.25 V ± 1 V",
+  "flavor": "The real one hears the train. This one pretends, on cue."
+}

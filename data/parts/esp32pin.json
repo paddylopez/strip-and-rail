@@ -1,0 +1,39 @@
+{
+  "id": "esp32pin",
+  "name": "ESP32 input pin",
+  "prefix": "ESP",
+  "footprint": {
+    "kind": "row",
+    "pins": 2
+  },
+  "pins": [
+    {
+      "id": "GPIO",
+      "name": "GPIO33 (wake input)",
+      "short": "G33"
+    },
+    {
+      "id": "GND",
+      "name": "GND",
+      "short": "GND"
+    }
+  ],
+  "model": {
+    "kind": "logicin",
+    "in": "GPIO",
+    "gnd": "GND",
+    "rin": 10000000.0,
+    "vih": 0.75,
+    "vil": 0.25,
+    "_comment": "reads HIGH at or above 0.75 x supply, LOW at or below 0.25 x supply (ESP32 datasheet); ~10 Mohm input"
+  },
+  "draw": "module",
+  "board": {
+    "color": "#1c1c1c",
+    "title": "ESP32",
+    "led": true
+  },
+  "card": "esp32pin",
+  "label": "ESP32 GPIO33 (wake)",
+  "datasheet": "https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf"
+}

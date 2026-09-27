@@ -1,0 +1,79 @@
+{
+  "id": "lm393",
+  "name": "LM393 comparator",
+  "prefix": "U",
+  "footprint": {
+    "kind": "dip",
+    "pins": 8
+  },
+  "chip": "LM393",
+  "pins": [
+    {
+      "id": "1",
+      "name": "pin 1 (OUT A)",
+      "short": "OUT A"
+    },
+    {
+      "id": "2",
+      "name": "pin 2 (IN− A)",
+      "short": "IN− A"
+    },
+    {
+      "id": "3",
+      "name": "pin 3 (IN+ A)",
+      "short": "IN+ A"
+    },
+    {
+      "id": "4",
+      "name": "pin 4 (GND)",
+      "short": "GND"
+    },
+    {
+      "id": "5",
+      "name": "pin 5 (IN+ B)",
+      "short": "IN+ B"
+    },
+    {
+      "id": "6",
+      "name": "pin 6 (IN− B)",
+      "short": "IN− B"
+    },
+    {
+      "id": "7",
+      "name": "pin 7 (OUT B)",
+      "short": "OUT B",
+      "optional": true
+    },
+    {
+      "id": "8",
+      "name": "pin 8 (VCC)",
+      "short": "VCC"
+    }
+  ],
+  "model": {
+    "kind": "comparator",
+    "vcc": "8",
+    "gnd": "4",
+    "channels": [
+      {
+        "inp": "3",
+        "inn": "2",
+        "out": "1"
+      },
+      {
+        "inp": "5",
+        "inn": "6",
+        "out": "7"
+      }
+    ],
+    "ron": 50,
+    "iq": 0.0004,
+    "hyst": 0.002,
+    "vmin": 2,
+    "_comment": "open collector: an output is off (IN+ > IN-) or pulls to GND through ron; 0.4 mA supply; 2 mV hysteresis"
+  },
+  "draw": "dip",
+  "card": "lm393",
+  "datasheet": "https://www.ti.com/lit/ds/symlink/lm393.pdf",
+  "label": "LM393 comparator"
+}

@@ -1,0 +1,28 @@
+{
+  "id": "breadboard",
+  "name": "Solderless Breadboard",
+  "cost": "≈ $5",
+  "frame": "basic",
+  "type": "Board — 830 points",
+  "rarity": "B",
+  "art": "breadboard",
+  "rules": [
+    [
+      "Strips",
+      "Each column's a–e is one conductor; f–j is another."
+    ],
+    [
+      "Channel",
+      "Nothing crosses the middle gap. Chips straddle it."
+    ],
+    [
+      "Rails",
+      "Each long row is one strip. The top and bottom pairs are separate until you bridge them."
+    ],
+    [
+      "One lead per hole."
+    ]
+  ],
+  "stats": "830 holes",
+  "flavor": "Early radio builders nailed their circuits to actual bread boards. The name stuck; the bread didn't."
+}

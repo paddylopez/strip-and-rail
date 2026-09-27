@@ -1,0 +1,52 @@
+{
+  "id": "tone",
+  "name": "Tone source",
+  "prefix": "MIC",
+  "footprint": {
+    "kind": "row",
+    "pins": 3
+  },
+  "pins": [
+    {
+      "id": "VDD",
+      "name": "VDD pin (power in)",
+      "short": "VDD"
+    },
+    {
+      "id": "GND",
+      "name": "GND pin",
+      "short": "GND"
+    },
+    {
+      "id": "OUT",
+      "name": "OUT pin (audio)",
+      "short": "OUT"
+    }
+  ],
+  "model": {
+    "kind": "tone",
+    "vdd": "VDD",
+    "gnd": "GND",
+    "out": "OUT",
+    "offset": 1.25,
+    "rout": 50,
+    "freq": 300,
+    "vmin": 2.5,
+    "iq": 0.0031,
+    "levels": {
+      "off": 0.003,
+      "talk": 0.2,
+      "horn": 1.0
+    },
+    "_comment": "stands in for the MAX9814 mic breakout: output centred on 1.25 V, up to 2 Vpp; the Sound control picks the level"
+  },
+  "draw": "module",
+  "board": {
+    "color": "#1f4fa3",
+    "title": "MIC",
+    "mic": true
+  },
+  "card": "tone",
+  "label": "Tone source (mic stand-in)",
+  "datasheet": "https://www.analog.com/media/en/technical-documentation/data-sheets/MAX9814.pdf"
+}

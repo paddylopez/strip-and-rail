@@ -1,0 +1,42 @@
+{
+  "id": "divider",
+  "title": "Pick a voltage",
+  "schematic": "divider",
+  "cards": [
+    {
+      "id": "divider"
+    },
+    {
+      "id": "pot",
+      "value": 10000
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.1
+  },
+  "brief": [
+    "A voltage divider: put the pot's two end legs on + and −, and its middle leg (the wiper) becomes an adjustable voltage from 0 to 5 V.",
+    "Nothing connects to the wiper: it's an output. Power up, pick the Meter, put the red probe in the wiper's strip and the black probe on a − rail.",
+    "Turn the knob (its slider is in the parts bin) until the meter reads 3.3 V, the ESP32's logic level. Then press Check."
+  ],
+  "lesson": "Vout = Vin × (the track below the wiper ÷ the whole track). The horn detector's threshold works the same way: R3 and RV1 divide 3.3 V down to a voltage you set with the trimmer.",
+  "bin": [
+    {
+      "type": "pot",
+      "value": 10000,
+      "count": 1
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": {
+    "kind": "divider",
+    "count": 0,
+    "target": 3.3,
+    "tol": 0.1,
+    "span": 0.9
+  }
+}

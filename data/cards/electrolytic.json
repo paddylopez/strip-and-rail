@@ -1,0 +1,22 @@
+{
+  "id": "electrolytic",
+  "name": "Electrolytic Capacitor",
+  "cost": "≈ 5¢",
+  "frame": "passive",
+  "type": "Passive — Capacitor",
+  "rarity": "U",
+  "art": "electrolytic",
+  "symbol": "sym_electrolytic",
+  "rules": [
+    [
+      "Stores charge",
+      "Fills through one resistor, drains through another. How long it takes scales with R × C."
+    ],
+    [
+      "Polarised",
+      "The striped side is −, toward ground. The long leg is +."
+    ]
+  ],
+  "stats": "{value:F|1e-5} · 25 V",
+  "flavor": "A bucket for electrons, with a small hole in the bottom."
+}

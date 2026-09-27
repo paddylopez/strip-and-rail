@@ -1,0 +1,21 @@
+{
+  "id": "supply",
+  "name": "Bench Supply",
+  "cost": "≈ $80",
+  "frame": "tool",
+  "type": "Tool — Power source",
+  "rarity": "B",
+  "art": "supply",
+  "rules": [
+    [
+      "Constant voltage",
+      "Holds its set voltage while the current stays under the limit."
+    ],
+    [
+      "Current limit",
+      "Past the limit it switches to CC: it holds the current and lets the voltage fall. A short shows as CC at ~0 V."
+    ]
+  ],
+  "stats": "5 V · 0.1 A",
+  "flavor": "Set the limit before you need it."
+}

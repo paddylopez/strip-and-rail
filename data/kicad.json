@@ -1,0 +1,20 @@
+{
+  "_comment": "How a KiCad netlist's symbols become Strip & Rail parts. Matched in order: 'lib_part' against 'Library:Symbol' (* = any), 'value' against the component's value (case-insensitive). 'pins' maps KiCad pin numbers to the part's pin ids when they differ; a netlist's pinfunction (K, A, +, -) wins when it names a pin directly. 'note' becomes a warning in the converted file.",
+  "symbols": [
+    { "lib_part": ["Device:R", "Device:R_Small", "Device:R_US", "Device:R_Small_US"], "part": "resistor" },
+    { "lib_part": ["Device:C", "Device:C_Small"], "part": "capacitor" },
+    { "lib_part": ["Device:C_Polarized", "Device:C_Polarized_Small", "Device:CP", "Device:CP1", "Device:CP_Small", "Device:C_Polarized_US"], "part": "electrolytic", "pins": { "1": "+", "2": "-" } },
+    { "lib_part": ["Device:LED", "Device:LED_Small", "Device:LED_ALT", "LED:*"], "part": "led", "pins": { "1": "K", "2": "A" } },
+    { "lib_part": ["Device:D", "Device:D_Small", "Diode:1N4148", "Diode:1N914", "Diode:1N4148W"], "part": "diode", "pins": { "1": "K", "2": "A" } },
+    { "lib_part": ["Diode:1N400*"], "part": "diode", "pins": { "1": "K", "2": "A" }, "note": "a 1N400x rectifier, simulated as a 1N4148 signal diode" },
+    { "lib_part": ["Device:R_Potentiometer", "Device:R_Potentiometer_Trim", "Device:R_POT", "Device:R_POT_TRIM", "Device:R_Potentiometer_US"], "part": "pot", "pins": { "1": "1", "2": "W", "3": "3" } },
+    { "lib_part": ["Switch:SW_Push", "Switch:SW_SPST", "Switch:SW_Push_Open"], "part": "button" },
+    { "lib_part": ["Timer:NE555*", "Timer:LM555*", "Timer:NA555*", "Timer:SE555*"], "value": ["NE555*", "LM555*", "555"], "part": "ne555" },
+    { "lib_part": ["Timer:TLC555*", "Timer:ICM7555*"], "part": "ne555", "note": "a CMOS 555, simulated as the bipolar NE555 (its output swings closer to the rails in reality)" },
+    { "lib_part": ["Comparator:LM393*"], "value": ["LM393*"], "part": "lm393" },
+    { "lib_part": ["Comparator:LM2903*"], "value": ["LM2903*"], "part": "lm393", "note": "an LM2903: the LM393's pin-compatible automotive twin" },
+    { "lib_part": ["Device:Battery", "Device:Battery_Cell"], "supply": true, "pins": { "1": "+", "2": "-" } }
+  ],
+  "ground_nets": ["GND", "GNDD", "GNDA", "GNDREF", "GNDPWR", "0", "Earth", "VSS"],
+  "power_nets": { "+5V": 5, "+3V3": 3.3, "+3.3V": 3.3, "+9V": 9, "+12V": 12, "+6V": 6, "+4.5V": 4.5, "VCC": null, "VDD": null, "+BATT": null, "V+": null }
+}

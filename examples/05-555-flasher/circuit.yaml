@@ -1,0 +1,31 @@
+# The alternating flasher: the blinker's output drives two LEDs, one to ground and one from the supply.
+# Output HIGH: current flows out of pin 3 through LED1. Output LOW: pin 3 sinks current from LED2.
+# LED2 stays dark while the output is high because the 555's high output sits ~1.7 V below the supply,
+# and that isn't enough to light a green LED.
+format: strip-and-rail/circuit@1
+title: 555 alternating flasher
+about: One output, two LEDs, taking turns. Pin 3 sources current when HIGH and sinks it when LOW.
+supply: { v: 5, ilim: 200m }
+
+parts:
+  U1:   { part: ne555 }
+  R1:   { part: resistor, value: 10k }
+  R2:   { part: resistor, value: 68k }
+  C1:   { part: electrolytic, value: 10u }
+  R3:   { part: resistor, value: 330 }
+  R4:   { part: resistor, value: 330 }
+  LED1: { part: led, color: red }
+  LED2: { part: led, color: green }
+
+nets:
+  VCC:  [PSU.+, U1.8, U1.4, R1.1, R4.1]
+  DIS:  [U1.7, R1.2, R2.1]
+  TIM:  [U1.6, U1.2, R2.2, C1.+]
+  OUT:  [U1.3, R3.1, LED2.K]           # the output feeds LED1's resistor AND takes LED2's cathode
+  A1:   [R3.2, LED1.A]
+  A2:   [R4.2, LED2.A]
+  GND:  [PSU.-, U1.1, C1.-, LED1.K]
+
+win:
+  - wiring: nets
+  - goal: { kind: blink, fmin: 0.5, fmax: 2, seconds: 5 }

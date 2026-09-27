@@ -1,0 +1,25 @@
+{
+  "id": "resistor",
+  "name": "Resistor",
+  "cost": "≈ 2¢",
+  "frame": "passive",
+  "type": "Passive — Resistor",
+  "rarity": "C",
+  "art": "resistor",
+  "symbol": "sym_resistor",
+  "rules": [
+    [
+      "Limits current",
+      "I = V ÷ R: more ohms, less current."
+    ],
+    [
+      "Either way round",
+      "No polarity."
+    ],
+    [
+      "Bands: 1st digit, 2nd digit, number of zeros, tolerance. Orange-orange-brown = 33 and one zero = 330 Ω."
+    ]
+  ],
+  "stats": "{value:Ω|330} · ¼ W",
+  "flavor": "Every LED's bodyguard."
+}

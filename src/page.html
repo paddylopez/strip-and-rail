@@ -1,0 +1,117 @@
+<title>Strip &amp; Rail</title>
+<meta name="description" content="A breadboard puzzle game: build the schematic on an 830-point board, power it, and let the simulator judge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&family=Silkscreen&display=swap">
+<style>
+/*{{CSS}}*/
+</style>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <svg class="tri" viewBox="0 0 64 56" role="group" aria-label="Ohm's law triangle: hover a letter to cover it and see its formula; click for the proof">
+        <path d="M32,3 L61,53 H3 Z" fill="none" stroke="#ffb000" stroke-width="2.6" stroke-linejoin="round"/>
+        <line x1="16.5" y1="33" x2="47.5" y2="33" stroke="#ffb000" stroke-width="2"/>
+        <line x1="32" y1="33" x2="32" y2="53" stroke="#ffb000" stroke-width="2"/>
+        <g data-f="V" tabindex="0" role="button" aria-label="Cover V: V equals I times R"><path d="M32,6 L47,31 H17 Z" fill="transparent"/><text x="32" y="29">V</text></g>
+        <g data-f="I" tabindex="0" role="button" aria-label="Cover I: I equals V over R"><rect x="8" y="35" width="23" height="17" fill="transparent"/><text x="21.5" y="50">I</text></g>
+        <g data-f="R" tabindex="0" role="button" aria-label="Cover R: R equals V over I"><rect x="33" y="35" width="23" height="17" fill="transparent"/><text x="43" y="50">R</text></g>
+      </svg>
+      <div class="logo">STRIP &amp; RAIL<small id="tagline">build it on the breadboard · the simulator is the judge</small></div>
+    </div>
+    <nav class="levels" id="levels" aria-label="Levels"></nav>
+    <input type="file" id="import-file" accept=".yaml,.yml,.json,.net" hidden>
+    <div class="topbtns">
+      <button class="binder-btn" id="rulebook-open">Rulebook <span id="rulebook-count"></span></button>
+      <button class="binder-btn" id="binder-open">Binder <span id="binder-count"></span></button>
+    </div>
+  </header>
+  <div class="main">
+    <aside class="calcs" id="calcs" aria-label="Calculators"></aside>
+    <section class="work" aria-label="Workbench">
+      <div class="toolbar" role="toolbar" aria-label="Tools">
+        <button class="tool power" id="power" aria-pressed="false" title="Supply output on/off (P)">⏻ Power <kbd>P</kbd></button>
+        <button class="tool" id="tool-wire" aria-pressed="false" title="Jumper wire (W)">Wire <kbd>W</kbd></button>
+        <span class="swatches" id="swatches" aria-label="Wire colour"></span>
+        <button class="tool" id="tool-meter" aria-pressed="false" title="Multimeter (M)">Meter <kbd>M</kbd></button>
+        <button class="tool" id="probe" aria-pressed="false" title="Show volts and milliamps everywhere while powered (V)">Probe view <kbd>V</kbd></button>
+        <button class="tool" id="labels" aria-pressed="true" title="Pin and leg labels on the parts (L)">Labels <kbd>L</kbd></button>
+        <button class="tool" id="tool-remove" aria-pressed="false" title="Pull parts off the board (X)">Remove <kbd>X</kbd></button>
+        <button class="tool" id="clear" title="Clear the board">Clear</button>
+        <button class="tool check" id="check">Check</button>
+      </div>
+      <div class="stage" id="stage"></div>
+      <div class="statusline" id="status" aria-live="polite"></div>
+      <div class="card tray">
+        <p class="eyebrow">Parts bin</p>
+        <div class="bin" id="bin"></div>
+        <div class="knobs" id="knobs"></div>
+      </div>
+      <div class="readouts">
+        <div class="meter" aria-live="polite">
+          <div class="sub">MULTIMETER</div>
+          <div class="lcd" id="meter-lcd">– – –</div>
+          <div class="sub" id="meter-sub">pick the Meter, then click two holes</div>
+          <div class="modes" role="group" aria-label="Meter mode">
+            <button id="mode-v" aria-pressed="true" title="Volts (and continuity with the power off)">V</button>
+            <button id="mode-a" aria-pressed="false" title="Amps: the meter becomes part of the circuit">A</button>
+            <button id="fuse" hidden>Replace fuse</button>
+          </div>
+        </div>
+        <div class="result" id="result" aria-live="polite"></div>
+      </div>
+    </section>
+    <aside class="side">
+      <div class="card" id="mission"></div>
+      <div class="card" id="newparts"></div>
+    </aside>
+  </div>
+</div>
+<div class="binder" id="rulebook" hidden role="dialog" aria-modal="true" aria-label="Rulebook">
+  <div class="binder-in">
+    <div class="binder-head"><h2>Rulebook</h2><p>Every number in this game follows from these. Definitions say what the words mean, laws are what nature does, and theorems are proved from them, one reason per line.</p><button id="rulebook-close">Close</button></div>
+    <div class="rb-body"><div class="rb-graph" id="rb-graph"></div><article class="rb-rule" id="rb-rule"></article></div>
+  </div>
+</div>
+<div class="binder" id="binder" hidden role="dialog" aria-modal="true" aria-label="Binder">
+  <div class="binder-in">
+    <div class="binder-head"><h2>Binder</h2><p>Every part is a card. You collect them as you reach the levels that introduce them.</p><button id="binder-close">Close</button></div>
+    <div class="binder-grid" id="binder-grid"></div>
+  </div>
+</div>
+<script>
+/*{{CALC}}*/
+</script>
+<script>
+window.BENCH_DATA = /*{{DATA}}*/;
+</script>
+<script>
+/*{{DATALOADER}}*/
+</script>
+<script>
+/*{{YAML}}*/
+</script>
+<script>
+/*{{CIRCUIT}}*/
+</script>
+<script>
+/*{{KICAD}}*/
+</script>
+<script>
+/*{{ENGINE}}*/
+</script>
+<script>
+/*{{LEVELS}}*/
+</script>
+<script>
+/*{{CARDS}}*/
+</script>
+<script>
+/*{{RULES}}*/
+</script>
+<script>
+window.SCHEMATICS = /*{{SCHEMATICS}}*/;
+</script>
+<script>
+/*{{UI}}*/
+</script>

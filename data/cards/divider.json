@@ -1,0 +1,23 @@
+{
+  "id": "divider",
+  "name": "Voltage Divider",
+  "cost": "free",
+  "frame": "technique",
+  "type": "Technique — Divider",
+  "rarity": "U",
+  "art": "divider",
+  "rules": [
+    [
+      "Two resistances in series across the supply: the joint between them sits partway up."
+    ],
+    [
+      "Vout = Vin × R2 ÷ (R1 + R2)."
+    ],
+    [
+      "Loading",
+      "Whatever you connect to the output draws current and pulls it down."
+    ]
+  ],
+  "stats": "Vout ∝ R2",
+  "flavor": "The horn detector's threshold is one."
+}

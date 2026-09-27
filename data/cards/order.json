@@ -1,0 +1,27 @@
+{
+  "cards": [
+    "breadboard",
+    "wire",
+    "supply",
+    "resistor",
+    "led",
+    "button",
+    "pot",
+    "electrolytic",
+    "ne555",
+    "meter",
+    "ammeter",
+    "ceramic",
+    "diode",
+    "series",
+    "rc",
+    "pullup",
+    "oneshot",
+    "astable",
+    "divider",
+    "lm393",
+    "tone",
+    "esp32pin",
+    "envelope"
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "id": "sandbox",
+  "title": "Sandbox",
+  "schematic": null,
+  "sandbox": true,
+  "cards": [
+    {
+      "id": "diode"
+    },
+    {
+      "id": "ceramic"
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.2
+  },
+  "brief": [
+    "Everything in the bin, no goal. Build whatever you like; the simulator runs it the same way."
+  ],
+  "lesson": "",
+  "bin": [
+    {
+      "type": "resistor",
+      "value": 150,
+      "count": null
+    },
+    {
+      "type": "resistor",
+      "value": 220,
+      "count": null
+    },
+    {
+      "type": "resistor",
+      "value": 330,
+      "count": null
+    },
+    {
+      "type": "resistor",
+      "value": 1000,
+      "count": null
+    },
+    {
+      "type": "resistor",
+      "value": 10000,
+      "count": null
+    },
+    {
+      "type": "resistor",
+      "value": 68000,
+      "count": null
+    },
+    {
+      "type": "led",
+      "color": "red",
+      "count": null
+    },
+    {
+      "type": "led",
+      "color": "yellow",
+      "count": null
+    },
+    {
+      "type": "led",
+      "color": "green",
+      "count": null
+    },
+    {
+      "type": "led",
+      "color": "blue",
+      "count": null
+    },
+    {
+      "type": "button",
+      "count": null
+    },
+    {
+      "type": "pot",
+      "value": 10000,
+      "count": null
+    },
+    {
+      "type": "electrolytic",
+      "value": 0.00001,
+      "count": null
+    },
+    {
+      "type": "electrolytic",
+      "value": 0.0001,
+      "count": null
+    },
+    {
+      "type": "capacitor",
+      "value": 1e-7,
+      "count": null
+    },
+    {
+      "type": "diode",
+      "count": null
+    },
+    {
+      "type": "ne555",
+      "count": null
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": null
+}

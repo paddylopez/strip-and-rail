@@ -1,0 +1,23 @@
+{
+  "id": "rc",
+  "name": "R × C",
+  "cost": "free",
+  "frame": "technique",
+  "type": "Technique — Time constant",
+  "rarity": "U",
+  "art": "rc",
+  "rules": [
+    [
+      "Time constant",
+      "R × C, in seconds: 1 kΩ × 1000 µF = 1 s."
+    ],
+    [
+      "A capacitor fills or drains about ⅔ of the way in one R × C, nearly all of it in five."
+    ],
+    [
+      "Bigger R or bigger C: slower."
+    ]
+  ],
+  "stats": "τ = R × C",
+  "flavor": "Ohms times farads is seconds. That's not a coincidence; it's the units."
+}

@@ -1,0 +1,50 @@
+{
+  "id": "series",
+  "title": "Two in a row",
+  "schematic": "series",
+  "cards": [
+    {
+      "id": "led",
+      "color": "green"
+    },
+    {
+      "id": "series"
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.1
+  },
+  "brief": [
+    "Two LEDs in series: the current goes through one, then the other. Same current, both lit.",
+    "Each green LED takes about 2.1 V, so two of them leave only about 0.8 V for the resistor. That's why this one is 150 Ω, not 330."
+  ],
+  "lesson": "In series, every part carries the same current and the voltages add up: 5 V ≈ 0.8 V (resistor) + 2.1 V + 2.1 V. Turn on Probe view (V) and read it off the board.",
+  "bin": [
+    {
+      "type": "resistor",
+      "value": 150,
+      "count": 1
+    },
+    {
+      "type": "led",
+      "color": "red",
+      "count": 1
+    },
+    {
+      "type": "led",
+      "color": "green",
+      "count": 2
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": {
+    "kind": "lit",
+    "count": 2,
+    "min": 0.002,
+    "max": 0.025
+  }
+}

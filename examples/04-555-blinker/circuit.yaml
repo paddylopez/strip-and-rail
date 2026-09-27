@@ -1,0 +1,27 @@
+# The classic 555 astable: the most-built hobby circuit there is. Level 10 in the game, as a circuit file.
+# A chip's pins are REF.PIN with the datasheet's pin numbers: U1.8 is pin 8 (VCC).
+# U1.5 (CTRL) appears in no net, so it must be left unconnected; the check enforces that.
+format: strip-and-rail/circuit@1
+title: 555 blinker
+about: C1 fills through R1 + R2 and drains through R2 into pin 7, between ⅓ and ⅔ of the supply. f ≈ 1.44 ÷ ((R1 + 2·R2) × C1) ≈ 1 Hz.
+supply: { v: 5, ilim: 200m }
+
+parts:
+  U1:   { part: ne555 }
+  R1:   { part: resistor, value: 10k }
+  R2:   { part: resistor, value: 68k }
+  C1:   { part: electrolytic, value: 10u }
+  R3:   { part: resistor, value: 330 }
+  LED1: { part: led, color: red }
+
+nets:
+  VCC:  [PSU.+, U1.8, U1.4, R1.1]      # power, RESET held high, and the top of the timing chain
+  DIS:  [U1.7, R1.2, R2.1]             # pin 7 sits between R1 and R2
+  TIM:  [U1.6, U1.2, R2.2, C1.+]       # pins 6 and 2 both watch the capacitor
+  OUT:  [U1.3, R3.1]
+  A:    [R3.2, LED1.A]
+  GND:  [PSU.-, U1.1, C1.-, LED1.K]
+
+win:
+  - wiring: nets
+  - goal: { kind: blink, fmin: 0.5, fmax: 2, seconds: 5 }

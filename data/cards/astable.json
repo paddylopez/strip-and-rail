@@ -1,0 +1,23 @@
+{
+  "id": "astable",
+  "name": "Astable",
+  "cost": "free",
+  "frame": "technique",
+  "type": "Technique — Oscillator",
+  "rarity": "R",
+  "art": "astable",
+  "rules": [
+    [
+      "Feedback",
+      "Pin 2 watches the same capacitor as pin 6, so the chip re-triggers itself."
+    ],
+    [
+      "C fills through R1 + R2 and drains through R2, bouncing between ⅓ and ⅔ of the supply."
+    ],
+    [
+      "f ≈ 1.44 ÷ ((R1 + 2·R2) × C)."
+    ]
+  ],
+  "stats": "≈ 1 Hz here",
+  "flavor": "A one-shot that can't stop pressing its own button."
+}

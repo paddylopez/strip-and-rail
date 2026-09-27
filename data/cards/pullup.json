@@ -1,0 +1,24 @@
+{
+  "id": "pullup",
+  "name": "Pull-up Resistor",
+  "cost": "free",
+  "frame": "technique",
+  "type": "Technique — Pull-up",
+  "rarity": "U",
+  "art": "pullup",
+  "rules": [
+    [
+      "Holds high",
+      "A resistor (about 10 kΩ) to + keeps an input HIGH when nothing else drives it."
+    ],
+    [
+      "Button wins",
+      "A button to ground still pulls the pin LOW: the resistor lets only a little current through."
+    ],
+    [
+      "Without it, the pin floats and reads noise."
+    ]
+  ],
+  "stats": "10 kΩ · 0.5 mA",
+  "flavor": "Default to HIGH. Let the button change its mind."
+}

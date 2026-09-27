@@ -1,0 +1,50 @@
+{
+  "id": "light",
+  "title": "Light it up",
+  "schematic": "light",
+  "cards": [
+    {
+      "id": "breadboard"
+    },
+    {
+      "id": "led",
+      "color": "red"
+    },
+    {
+      "id": "resistor",
+      "value": 330
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.1
+  },
+  "brief": [
+    "The bench supply is set to 5 V. Run its red lead to a red + rail and its black lead to a blue − rail.",
+    "Then build the schematic: + → the resistor → the LED → −. The LED's long leg (anode) faces +.",
+    "Hover any hole to see everything it's connected to. A column of five holes (a–e, or f–j) is one strip."
+  ],
+  "lesson": "An LED on its own would take all the current the supply can give and burn out. The resistor sets the current: (5 V − 2 V) ÷ 330 Ω ≈ 9 mA.",
+  "bin": [
+    {
+      "type": "resistor",
+      "value": 330,
+      "count": 1
+    },
+    {
+      "type": "led",
+      "color": "red",
+      "count": 3
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": {
+    "kind": "lit",
+    "count": 1,
+    "min": 0.004,
+    "max": 0.025
+  }
+}

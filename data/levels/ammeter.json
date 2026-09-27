@@ -1,0 +1,78 @@
+{
+  "id": "ammeter",
+  "title": "In the loop",
+  "schematic": "ammeter",
+  "cards": [
+    {
+      "id": "ammeter"
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 1
+  },
+  "brief": [
+    "Volts are measured across a part. Amps are measured through it: the current has to flow through the meter.",
+    "The circuit's already built and lit. Pull the wire that closes the loop (Remove tool), switch the meter to A, and bridge the gap with the probes: red on the LED's side, black on the − rail.",
+    "Careful: in A mode the meter is nearly a short (0.1 Ω). Across a part it steals the current; across the supply it blows its 200 mA fuse. The supply's limit is 1 A this time."
+  ],
+  "lesson": "A voltmeter goes across a part and barely disturbs anything. An ammeter goes in series and becomes part of the loop. Same meter, opposite rules, which is why real meters have a separate socket for amps.",
+  "bin": [
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "preset": [
+    {
+      "id": "W1",
+      "type": "wire",
+      "color": "red",
+      "pins": {
+        "a": "PSU.+",
+        "b": "T+5"
+      }
+    },
+    {
+      "id": "W2",
+      "type": "wire",
+      "color": "black",
+      "pins": {
+        "a": "PSU.-",
+        "b": "T-6"
+      }
+    },
+    {
+      "id": "R1",
+      "type": "resistor",
+      "value": 330,
+      "pins": {
+        "1": "T+9",
+        "2": "a12"
+      }
+    },
+    {
+      "id": "LED1",
+      "type": "led",
+      "color": "red",
+      "pins": {
+        "A": "c12",
+        "K": "c14"
+      }
+    },
+    {
+      "id": "W3",
+      "type": "wire",
+      "color": "black",
+      "pins": {
+        "a": "a14",
+        "b": "T-15"
+      },
+      "free": true
+    }
+  ],
+  "goal": {
+    "kind": "ammeter",
+    "count": 1
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "id": "pot",
+  "name": "Potentiometer",
+  "cost": "≈ 50¢",
+  "frame": "passive",
+  "type": "Passive — Variable resistor",
+  "rarity": "U",
+  "art": "pot",
+  "symbol": "sym_pot",
+  "rules": [
+    [
+      "Track",
+      "Legs 1 and 3 are the ends: always the full value between them."
+    ],
+    [
+      "Wiper",
+      "The middle leg slides along the track: 0 to the full value, from either end."
+    ],
+    [
+      "Two legs (an end + the wiper): a variable resistor. All three: a voltage divider."
+    ]
+  ],
+  "stats": "{value:Ω|10000} · 3 legs",
+  "flavor": "Every volume knob you've ever turned."
+}

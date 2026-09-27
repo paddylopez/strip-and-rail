@@ -1,0 +1,18 @@
+{
+  "levels": [
+    "light",
+    "series",
+    "button",
+    "dimmer",
+    "afterglow",
+    "rctime",
+    "chip",
+    "latch",
+    "oneshot",
+    "blink",
+    "gap",
+    "divider",
+    "ammeter"
+  ],
+  "sandbox": "sandbox"
+}

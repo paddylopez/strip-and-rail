@@ -1,0 +1,25 @@
+{
+  "id": "ceramic",
+  "name": "Ceramic Capacitor",
+  "cost": "≈ 2¢",
+  "frame": "passive",
+  "type": "Passive — Capacitor",
+  "rarity": "C",
+  "art": "ceramic",
+  "symbol": "sym_capacitor",
+  "rules": [
+    [
+      "Stores charge",
+      "A little, fast."
+    ],
+    [
+      "Either way round",
+      "No polarity."
+    ],
+    [
+      "Marked in picofarads: 104 = 10 and four zeros pF = 100 nF."
+    ]
+  ],
+  "stats": "100 nF · 50 V",
+  "flavor": "Put one across every chip's power pins. Always."
+}

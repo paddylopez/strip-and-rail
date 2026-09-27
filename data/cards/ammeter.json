@@ -1,0 +1,28 @@
+{
+  "id": "ammeter",
+  "name": "Multimeter, Amps",
+  "cost": "1 fuse",
+  "frame": "tool",
+  "type": "Tool — Ammeter mode",
+  "rarity": "R",
+  "art": "meter",
+  "artV": {
+    "amps": true
+  },
+  "symbol": "sym_ammeter",
+  "rules": [
+    [
+      "In series",
+      "Current is measured through the meter: break the loop and let the probes bridge the gap."
+    ],
+    [
+      "Near-short",
+      "In A mode the meter is ~0.1 Ω. Across a part it steals the current; across the supply it blows its fuse."
+    ],
+    [
+      "Real meters have a separate socket for amps, for exactly this reason."
+    ]
+  ],
+  "stats": "0.1 Ω · 200 mA",
+  "flavor": "Everyone blows their meter's fuse exactly once. Most, twice."
+}

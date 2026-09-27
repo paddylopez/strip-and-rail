@@ -1,0 +1,67 @@
+{
+  "id": "rctime",
+  "title": "Time it",
+  "schematic": "rctime",
+  "cards": [
+    {
+      "id": "rc"
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.1
+  },
+  "brief": [
+    "The glow fades on a clock set by R × C, resistance times capacitance, in seconds: 1 kΩ × 1000 µF = 1 s.",
+    "Make the afterglow last 1.2–4 s (until it fades to a fifth of its brightness). The bin has three resistors and two capacitors: pick the pair."
+  ],
+  "lesson": "The fade here takes about 1.6 × R × C, so doubling either part doubles it. The 555 runs on this same clock: it watches a capacitor fill through a resistor.",
+  "bin": [
+    {
+      "type": "button",
+      "count": 1
+    },
+    {
+      "type": "resistor",
+      "value": 330,
+      "count": 1
+    },
+    {
+      "type": "resistor",
+      "value": 1000,
+      "count": 1
+    },
+    {
+      "type": "resistor",
+      "value": 2200,
+      "count": 1
+    },
+    {
+      "type": "electrolytic",
+      "value": 0.0001,
+      "count": 1
+    },
+    {
+      "type": "electrolytic",
+      "value": 0.001,
+      "count": 1
+    },
+    {
+      "type": "led",
+      "color": "red",
+      "count": 2
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": {
+    "kind": "afterglow",
+    "hold": 0.5,
+    "min": 0.001,
+    "max": 0.025,
+    "minGlow": 1.2,
+    "maxGlow": 4
+  }
+}

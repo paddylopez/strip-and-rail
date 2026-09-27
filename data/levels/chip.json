@@ -1,0 +1,46 @@
+{
+  "id": "chip",
+  "title": "Meet the 555",
+  "schematic": "chip",
+  "cards": [
+    {
+      "id": "ne555"
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.2
+  },
+  "brief": [
+    "A chip is a whole circuit in a package, and it does nothing until it's powered. The 555 straddles the channel, notch to the left: pin 1 bottom-left, counting right along the bottom, then back along the top.",
+    "Power: pin 8 (VCC) to +, pin 1 (GND) to −. Pin 4 (RESET) to + as well, or the chip stays switched off.",
+    "Pin 2 (TRIGGER) to −: that says 'output on'. Pin 6 (THRESHOLD) to − too, for now. Pin 3 is the output: through a resistor to the LED."
+  ],
+  "lesson": "Inside the 555 is a switch with three inputs: TRIGGER low turns it on, THRESHOLD high turns it off, RESET low overrides both. Levels 8–10 use each of them.",
+  "bin": [
+    {
+      "type": "ne555",
+      "count": 1
+    },
+    {
+      "type": "resistor",
+      "value": 330,
+      "count": 1
+    },
+    {
+      "type": "led",
+      "color": "red",
+      "count": 2
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": {
+    "kind": "lit",
+    "count": 1,
+    "min": 0.002,
+    "max": 0.025
+  }
+}

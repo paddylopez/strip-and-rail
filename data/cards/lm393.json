@@ -1,0 +1,27 @@
+{
+  "id": "lm393",
+  "name": "LM393 Comparator",
+  "cost": "≈ 25¢",
+  "frame": "ic",
+  "type": "Integrated circuit — Dual comparator",
+  "rarity": "R",
+  "art": "dip",
+  "artV": {
+    "part": "lm393"
+  },
+  "rules": [
+    [
+      "Compares",
+      "The output lets go when IN+ is above IN−, and pulls to ground when it isn't."
+    ],
+    [
+      "Open collector",
+      "It can only pull down. A pull-up resistor makes the HIGH."
+    ],
+    [
+      "Two in one package: tie the unused half off (IN+ to ground, IN− to VCC) so it can't flap around."
+    ]
+  ],
+  "stats": "2–36 V · 0.4 mA",
+  "flavor": "It answers exactly one question, very fast: is this bigger than that?"
+}

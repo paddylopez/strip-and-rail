@@ -1,0 +1,458 @@
+{
+  "rules": [
+    {
+      "id": "charge",
+      "g": "Charge",
+      "kind": "definition",
+      "unlock": "light",
+      "title": "Charge",
+      "short": "Q, in coulombs (C)",
+      "uses": [],
+      "plain": "Charge is an amount of electricity. One coulomb is about 6.24 × 10<sup>18</sup> electrons' worth."
+    },
+    {
+      "id": "current",
+      "g": "Current",
+      "kind": "definition",
+      "unlock": "light",
+      "title": "Current",
+      "short": "I = Q ÷ t  ·  1 A = 1 C/s",
+      "uses": [
+        "charge"
+      ],
+      "plain": "Current is how much charge passes a point each second. One ampere is one coulomb per second."
+    },
+    {
+      "id": "voltage",
+      "g": "Voltage",
+      "kind": "definition",
+      "unlock": "light",
+      "title": "Voltage",
+      "short": "V = E ÷ Q  ·  1 V = 1 J/C",
+      "uses": [
+        "charge"
+      ],
+      "plain": "Voltage is energy per coulomb: what each coulomb gains in the supply and gives up in the parts."
+    },
+    {
+      "id": "capacitance",
+      "g": "Capacitance",
+      "kind": "definition",
+      "unlock": "afterglow",
+      "title": "Capacitance",
+      "short": "C = Q ÷ V  ·  1 F = 1 C/V",
+      "uses": [
+        "charge",
+        "voltage"
+      ],
+      "plain": "A capacitor holds charge in proportion to the voltage across it. Capacitance is the ratio: coulombs per volt.",
+      "example": "1000 µF at 5 V: Q = C × V = 0.001 × 5 = 0.005 C (5 millicoulombs)."
+    },
+    {
+      "id": "ohm",
+      "g": "Ohm's law",
+      "kind": "law",
+      "unlock": "light",
+      "title": "Ohm's law",
+      "short": "V = I × R  ·  1 Ω = 1 V/A",
+      "uses": [
+        "current",
+        "voltage"
+      ],
+      "plain": "For a resistor, voltage and current stay in proportion, and the ratio R doesn't change. That ratio is what an ohm measures: volts per amp. Georg Ohm measured it in 1827; it's an observation about materials, not a definition you can prove.",
+      "example": "The triangle in the logo is a memory aid: cover the letter you want. V = I × R, I = V ÷ R, R = V ÷ I. That's one law rearranged by algebra, not three laws."
+    },
+    {
+      "id": "kcl",
+      "g": "Junction rule",
+      "kind": "law",
+      "unlock": "light",
+      "title": "The junction rule (KCL)",
+      "short": "current in = current out",
+      "uses": [
+        "current"
+      ],
+      "plain": "At any junction, the current flowing in equals the current flowing out. Charge is never created or destroyed, and it can't pile up in a wire. (Kirchhoff's current law.)"
+    },
+    {
+      "id": "kvl",
+      "g": "Loop rule",
+      "kind": "law",
+      "unlock": "light",
+      "title": "The loop rule (KVL)",
+      "short": "Σ rises = Σ drops, around any loop",
+      "uses": [
+        "voltage"
+      ],
+      "plain": "Go around any closed loop and the voltage the supply gives equals the voltage the parts use. A coulomb that goes all the way round ends where it started, with the energy it started with. (Kirchhoff's voltage law.)"
+    },
+    {
+      "id": "ledres",
+      "g": "LED resistor",
+      "kind": "theorem",
+      "unlock": "light",
+      "title": "The LED resistor",
+      "short": "R = (Vs − Vf) ÷ I",
+      "uses": [
+        "kvl",
+        "kcl",
+        "ohm"
+      ],
+      "plain": "The resistor takes whatever voltage the LED doesn't, and Ohm's law turns that into a resistance.",
+      "given": "A supply Vs, a resistor R and an LED in one loop; the LED holds its forward voltage Vf.",
+      "proof": [
+        [
+          "V<sub>s</sub> = V<sub>R</sub> + V<sub>LED</sub>",
+          "@kvl around the loop"
+        ],
+        [
+          "V<sub>LED</sub> = V<sub>f</sub>",
+          "Given (the LED card)"
+        ],
+        [
+          "V<sub>R</sub> = V<sub>s</sub> − V<sub>f</sub>",
+          "Algebra, 1 and 2"
+        ],
+        [
+          "The resistor carries the LED's current, I",
+          "@kcl at the joint between them"
+        ],
+        [
+          "V<sub>R</sub> = I × R",
+          "@ohm"
+        ],
+        [
+          "R = (V<sub>s</sub> − V<sub>f</sub>) ÷ I  ∎",
+          "Algebra, 3 and 5"
+        ]
+      ],
+      "example": "Level 1: (5 − 2.0) ÷ 0.010 = 300 Ω. The next standard value up is 330 Ω, which gives 9.1 mA."
+    },
+    {
+      "id": "series",
+      "g": "Series",
+      "kind": "theorem",
+      "unlock": "series",
+      "title": "Series circuits",
+      "short": "same I everywhere; the V's add up",
+      "uses": [
+        "kcl",
+        "kvl",
+        "ledres"
+      ],
+      "plain": "In a single loop there's nowhere else for the current to go, so every part carries the same current, and the drops share out the supply.",
+      "given": "Parts connected end to end in one loop, with no branches.",
+      "proof": [
+        [
+          "At each joint between two parts, current in = current out",
+          "@kcl"
+        ],
+        [
+          "The joints have no third wire, so the current leaving one part is the current entering the next",
+          "Given (no branches)"
+        ],
+        [
+          "Every part carries the same current I",
+          "Repeat 2 all the way round"
+        ],
+        [
+          "V<sub>s</sub> = V<sub>1</sub> + V<sub>2</sub> + … + V<sub>n</sub>  ∎",
+          "@kvl"
+        ],
+        [
+          "With n LEDs in series: R = (V<sub>s</sub> − n·V<sub>f</sub>) ÷ I",
+          "4, then as in @ledres"
+        ]
+      ],
+      "example": "Level 2: two green LEDs at 2.08 V each and 150 Ω: (5 − 4.16) ÷ 150 = 5.6 mA, the same through all three parts."
+    },
+    {
+      "id": "power",
+      "g": "Power",
+      "kind": "theorem",
+      "unlock": "dimmer",
+      "title": "Power in a resistor",
+      "short": "P = V × I = I² × R",
+      "uses": [
+        "voltage",
+        "current",
+        "ohm"
+      ],
+      "plain": "Power is energy per second (1 watt = 1 joule per second). A resistor turns it into heat, which is why resistors have a watt rating.",
+      "given": "A resistor R with voltage V across it and current I through it.",
+      "proof": [
+        [
+          "P = E ÷ t",
+          "Definition of power (1 W = 1 J/s)"
+        ],
+        [
+          "E = V × Q",
+          "@voltage (V = E ÷ Q)"
+        ],
+        [
+          "P = V × (Q ÷ t) = V × I",
+          "Substitute 2 into 1; @current"
+        ],
+        [
+          "V = I × R",
+          "@ohm"
+        ],
+        [
+          "P = I × R × I = I² × R  ∎",
+          "Substitute 4 into 3"
+        ]
+      ],
+      "example": "Level 1's 330 Ω at 9.1 mA: 0.0091² × 330 = 27 mW, far inside a ¼ W resistor."
+    },
+    {
+      "id": "ohmfarad",
+      "g": "Ω × F = s",
+      "kind": "theorem",
+      "unlock": "rctime",
+      "title": "Ohms × farads = seconds",
+      "short": "Ω × F = s",
+      "uses": [
+        "current",
+        "ohm",
+        "capacitance"
+      ],
+      "figure": "units",
+      "plain": "Resistance times capacitance comes out in seconds, whatever the values. The units prove it.",
+      "given": "The unit definitions.",
+      "proof": [
+        [
+          "1 Ω = 1 V/A",
+          "@ohm"
+        ],
+        [
+          "1 F = 1 C/V",
+          "@capacitance"
+        ],
+        [
+          "Ω × F = (V ÷ A) × (C ÷ V)",
+          "Multiply 1 and 2"
+        ],
+        [
+          "= (<del>V</del> ÷ A) × (C ÷ <del>V</del>) = C ÷ A",
+          "The volts cancel"
+        ],
+        [
+          "1 A = 1 C/s",
+          "@current"
+        ],
+        [
+          "C ÷ A = C ÷ (C/s) = <del>C</del> × s ÷ <del>C</del> = s  ∎",
+          "Substitute 5; the coulombs cancel"
+        ],
+        [
+          "1 kΩ × 1000 µF = 10<sup>3</sup> Ω × 10<sup>−3</sup> F = 1 Ω·F = 1 s",
+          "3–6, with k = 10<sup>3</sup> and 1000 µ = 10<sup>−3</sup>"
+        ]
+      ],
+      "example": "This proves the units, not yet why R × C is the capacitor's clock. That's the next two theorems."
+    },
+    {
+      "id": "fraction",
+      "g": "Fraction rule",
+      "kind": "theorem",
+      "unlock": "rctime",
+      "title": "The fraction rule",
+      "short": "ΔV ÷ V = Δt ÷ (R × C)",
+      "uses": [
+        "ohm",
+        "current",
+        "capacitance",
+        "kvl"
+      ],
+      "plain": "A capacitor draining through a resistor loses the same fraction of its voltage in every equal slice of time. It's always the same fraction; the amount shrinks as the voltage does.",
+      "given": "A capacitor C at voltage V, draining through a resistor R; Δt is a slice of time short enough that V barely changes during it.",
+      "proof": [
+        [
+          "The resistor has the capacitor's voltage V across it",
+          "@kvl around their little loop"
+        ],
+        [
+          "The current through it is I = V ÷ R",
+          "@ohm"
+        ],
+        [
+          "In the slice Δt, the charge that leaves is ΔQ = I × Δt",
+          "@current (I = Q ÷ t)"
+        ],
+        [
+          "Losing ΔQ lowers the voltage by ΔV = ΔQ ÷ C",
+          "@capacitance (V = Q ÷ C)"
+        ],
+        [
+          "ΔV = (V ÷ R) × Δt ÷ C = V × Δt ÷ (R × C)",
+          "Substitute 2 and 3 into 4"
+        ],
+        [
+          "ΔV ÷ V = Δt ÷ (R × C)  ∎",
+          "Divide both sides by V"
+        ]
+      ],
+      "example": "With R × C = 1 s, every 10 ms slice takes away 1% of whatever voltage is left."
+    },
+    {
+      "id": "timeconst",
+      "g": "R × C clock",
+      "kind": "theorem",
+      "unlock": "rctime",
+      "title": "R × C is the capacitor's clock",
+      "short": "empty at the starting rate in R × C; 37% left after it",
+      "uses": [
+        "fraction"
+      ],
+      "figure": "compounding",
+      "plain": "If it kept draining at its starting rate, the capacitor would be empty after exactly R × C. It doesn't keep that rate, because each slice takes a fraction of what's left, so after R × C about 37% remains.",
+      "given": "The draining capacitor of @fraction, starting at V₀.",
+      "proof": [
+        [
+          "At the start it loses V₀ × Δt ÷ (RC) per slice: V₀ ÷ (RC) per second",
+          "@fraction"
+        ],
+        [
+          "At that constant rate, all of V₀ would be gone after t = RC",
+          "V₀ ÷ (RC) × t = V₀ ⇒ t = RC (the tangent line in the figure)"
+        ],
+        [
+          "Cut RC into n equal slices. Each keeps (1 − 1/n) of the voltage before it",
+          "@fraction with Δt = RC ÷ n"
+        ],
+        [
+          "After all n slices: V = V₀ × (1 − 1/n)<sup>n</sup>",
+          "Repeat 3, n times (compounding)"
+        ],
+        [
+          "As the slices get thinner, (1 − 1/n)<sup>n</sup> → 1/e ≈ 0.368",
+          "The limit that defines e (compound interest, run backwards)"
+        ],
+        [
+          "After R × C, 36.8% of V₀ remains: it has drained about ⅔  ∎",
+          "4 and 5"
+        ],
+        [
+          "In general, after time t the fraction left is e<sup>−t/RC</sup>; after 5 RC it's under 1%",
+          "The same limit with t instead of RC; 0.368<sup>5</sup> ≈ 0.007"
+        ]
+      ],
+      "example": "Level 6's glow fades to a fifth when e<sup>−t/RC</sup> = ⅕, at t = RC × ln 5 ≈ 1.6 RC. That's the 1.6 you measured."
+    },
+    {
+      "id": "charging",
+      "g": "Filling to ⅔",
+      "kind": "theorem",
+      "unlock": "oneshot",
+      "title": "Filling to a threshold",
+      "short": "reaches ⅔ of the supply after RC × ln 3 ≈ 1.1 RC",
+      "uses": [
+        "fraction",
+        "timeconst"
+      ],
+      "plain": "Charging is draining in a mirror: the capacitor closes the GAP to the supply by the same fraction per slice, so the gap shrinks like the clock theorem says.",
+      "given": "A capacitor charging from 0 V toward the supply Vs through R, and a switch point at ⅔ Vs (the 555's pin 6).",
+      "proof": [
+        [
+          "The resistor has the gap (Vs − V) across it, so the gap shrinks by Δt ÷ (RC) of itself per slice",
+          "@fraction, with the gap in place of V"
+        ],
+        [
+          "After time t the gap is Vs × e<sup>−t/RC</sup>",
+          "@timeconst (it started as all of Vs)"
+        ],
+        [
+          "At ⅔ Vs the gap is ⅓ Vs, so e<sup>−t/RC</sup> = ⅓",
+          "Given (the threshold)"
+        ],
+        [
+          "t = RC × ln 3",
+          "Take the natural log of both sides"
+        ],
+        [
+          "ln 3 ≈ 1.0986, so t ≈ 1.1 × R × C  ∎",
+          "Arithmetic"
+        ]
+      ],
+      "example": "Level 9: 100 kΩ × 10 µF × 1.0986 = 1.10 s, what the simulator measured."
+    },
+    {
+      "id": "astable",
+      "g": "Blink formula",
+      "kind": "theorem",
+      "unlock": "blink",
+      "title": "The blink formula",
+      "short": "f = 1 ÷ (ln 2 × (R1 + 2·R2) × C) ≈ 1.44 ÷ ((R1 + 2·R2) × C)",
+      "uses": [
+        "charging",
+        "timeconst"
+      ],
+      "plain": "The capacitor bounces between ⅓ and ⅔ of the supply. Each trip halves a gap, and halving a gap takes RC × ln 2.",
+      "given": "The level-10 astable: C fills through R1 + R2 and drains through R2 into pin 7, switching at ⅓ and ⅔ of Vs.",
+      "proof": [
+        [
+          "Rising from ⅓ to ⅔ Vs, the gap to Vs goes from ⅔ Vs to ⅓ Vs: it halves",
+          "Given (the 555's thresholds)"
+        ],
+        [
+          "Halving a gap through R1 + R2 takes (R1 + R2) × C × ln 2",
+          "@charging with e<sup>−t/RC</sup> = ½"
+        ],
+        [
+          "Falling from ⅔ to ⅓ Vs through R2, the voltage halves",
+          "Given (pin 7 drains through R2)"
+        ],
+        [
+          "That takes R2 × C × ln 2",
+          "@timeconst with e<sup>−t/RC</sup> = ½"
+        ],
+        [
+          "One blink: T = ln 2 × (R1 + 2·R2) × C",
+          "Add 2 and 4"
+        ],
+        [
+          "f = 1 ÷ T ≈ 1.44 ÷ ((R1 + 2·R2) × C)  ∎",
+          "1 ÷ ln 2 ≈ 1.4427"
+        ]
+      ],
+      "example": "Level 10: 0.693 × (10k + 136k) × 10 µF = 1.01 s per blink, about 1 Hz."
+    },
+    {
+      "id": "dividerthm",
+      "g": "Divider",
+      "kind": "theorem",
+      "unlock": "divider",
+      "title": "The voltage divider",
+      "short": "Vout = Vin × R2 ÷ (R1 + R2)",
+      "uses": [
+        "series",
+        "ohm"
+      ],
+      "plain": "Two resistances in series share the supply in proportion to their size; the joint sits at the bottom one's share.",
+      "given": "R1 and R2 in series across Vin (R2 at the bottom, to ground), and nothing drawing current from the joint.",
+      "proof": [
+        [
+          "The same current I flows through R1 and R2",
+          "@series"
+        ],
+        [
+          "Vin = I × R1 + I × R2 = I × (R1 + R2)",
+          "@series (the drops add) and @ohm"
+        ],
+        [
+          "I = Vin ÷ (R1 + R2)",
+          "Algebra"
+        ],
+        [
+          "The joint's voltage is the drop across R2: Vout = I × R2",
+          "@ohm"
+        ],
+        [
+          "Vout = Vin × R2 ÷ (R1 + R2)  ∎",
+          "Substitute 3 into 4"
+        ]
+      ],
+      "example": "Level 12's pot at 34%: the track below the wiper is 6.6 kΩ of 10 kΩ, so 5 × 6.6 ÷ 10 = 3.3 V."
+    }
+  ]
+}

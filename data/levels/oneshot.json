@@ -1,0 +1,65 @@
+{
+  "id": "oneshot",
+  "title": "One-shot",
+  "schematic": "oneshot",
+  "cards": [
+    {
+      "id": "oneshot"
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.2
+  },
+  "brief": [
+    "Level 8's SET button plus level 6's clock. Pressing SET turns the output on; this time a capacitor turns it off again.",
+    "Join pins 6 (THRESHOLD) and 7 (DISCHARGE). R1 (100 kΩ) goes from + to them, and C1 (10 µF) from them to ground. Pin 4 goes straight to +.",
+    "While the output is on, C1 fills through R1. At ⅔ of the supply, pin 6 turns the output off and pin 7 empties C1, ready for the next press."
+  ],
+  "lesson": "On-time ≈ 1.1 × R × C = 1.1 × 100 kΩ × 10 µF ≈ 1.1 s. That's the 555's 'monostable' mode: one press, one timed pulse.",
+  "bin": [
+    {
+      "type": "ne555",
+      "count": 1
+    },
+    {
+      "type": "resistor",
+      "value": 10000,
+      "count": 1
+    },
+    {
+      "type": "resistor",
+      "value": 100000,
+      "count": 1
+    },
+    {
+      "type": "resistor",
+      "value": 330,
+      "count": 1
+    },
+    {
+      "type": "electrolytic",
+      "value": 0.00001,
+      "count": 1
+    },
+    {
+      "type": "button",
+      "count": 1
+    },
+    {
+      "type": "led",
+      "color": "yellow",
+      "count": 2
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": {
+    "kind": "oneshot",
+    "min": 0.002,
+    "minPulse": 0.7,
+    "maxPulse": 2
+  }
+}

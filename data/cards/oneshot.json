@@ -1,0 +1,24 @@
+{
+  "id": "oneshot",
+  "name": "One-shot",
+  "cost": "free",
+  "frame": "technique",
+  "type": "Technique — Monostable",
+  "rarity": "R",
+  "art": "oneshot",
+  "rules": [
+    [
+      "Trigger",
+      "A press on pin 2 turns the output on."
+    ],
+    [
+      "Timeout",
+      "C fills through R; at ⅔ of the supply, pin 6 turns the output off and pin 7 empties C."
+    ],
+    [
+      "On-time ≈ 1.1 × R × C."
+    ]
+  ],
+  "stats": "t ≈ 1.1 RC",
+  "flavor": "Press once. It stays on exactly as long as you told it to."
+}

@@ -1,0 +1,23 @@
+# Two branches side by side. In parallel, every branch gets the full supply voltage, and each resistor
+# sets its own LED's current. (Compare level 2, where two LEDs in SERIES shared one current.)
+# R1 and R2 are identical, so it doesn't matter which one you put in which branch: the check allows that.
+format: strip-and-rail/circuit@1
+title: Two LEDs in parallel
+about: Each branch sees the full 5 V and has its own resistor, so each LED gets its own current.
+supply: { v: 5, ilim: 100m }
+
+parts:
+  R1:   { part: resistor, value: 330 }
+  R2:   { part: resistor, value: 330 }
+  LED1: { part: led, color: red }
+  LED2: { part: led, color: green }
+
+nets:
+  VCC: [PSU.+, R1.1, R2.1]          # one net can touch many pins: both resistors start at +
+  A1:  [R1.2, LED1.A]
+  A2:  [R2.2, LED2.A]
+  GND: [LED1.K, LED2.K, PSU.-]      # and both LEDs come back to −
+
+win:
+  - wiring: nets
+  - goal: { kind: lit, count: 2, min: 4m, max: 25m }

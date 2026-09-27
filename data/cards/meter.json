@@ -1,0 +1,22 @@
+{
+  "id": "meter",
+  "name": "Multimeter",
+  "cost": "≈ $25",
+  "frame": "tool",
+  "type": "Tool — Multimeter",
+  "rarity": "U",
+  "art": "meter",
+  "symbol": "sym_meter",
+  "rules": [
+    [
+      "Continuity",
+      "Power off: beeps when both probes are on one conductor."
+    ],
+    [
+      "Volts",
+      "Power on: reads the red probe minus the black. It goes across a part and barely disturbs anything."
+    ]
+  ],
+  "stats": "V · Ω · A",
+  "flavor": "Trust, but verify."
+}

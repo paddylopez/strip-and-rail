@@ -1,0 +1,54 @@
+{
+  "id": "ne555",
+  "name": "555 timer",
+  "prefix": "U",
+  "footprint": {
+    "kind": "dip",
+    "pins": 8
+  },
+  "chip": "NE555",
+  "pins": [
+    {
+      "id": "1",
+      "name": "pin 1 (GND)"
+    },
+    {
+      "id": "2",
+      "name": "pin 2 (TRIG)"
+    },
+    {
+      "id": "3",
+      "name": "pin 3 (OUT)"
+    },
+    {
+      "id": "4",
+      "name": "pin 4 (RESET)"
+    },
+    {
+      "id": "5",
+      "name": "pin 5 (CTRL)",
+      "optional": true
+    },
+    {
+      "id": "6",
+      "name": "pin 6 (THR)"
+    },
+    {
+      "id": "7",
+      "name": "pin 7 (DIS)",
+      "optional": true
+    },
+    {
+      "id": "8",
+      "name": "pin 8 (VCC)"
+    }
+  ],
+  "model": {
+    "kind": "ne555",
+    "_comment": "behavioural: 5k-5k-5k divider, trigger < 1/3, threshold > 2/3, output VCC-1.7 V / 10 ohm, discharge 20 ohm"
+  },
+  "draw": "dip",
+  "card": "ne555",
+  "datasheet": "https://www.ti.com/lit/ds/symlink/ne555.pdf",
+  "label": "555 timer"
+}

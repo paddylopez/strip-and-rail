@@ -1,0 +1,44 @@
+{
+  "id": "button",
+  "title": "Push to light",
+  "schematic": "button",
+  "cards": [
+    {
+      "id": "button"
+    }
+  ],
+  "supply": {
+    "v": 5,
+    "ilim": 0.1
+  },
+  "brief": [
+    "A push button is a gap you close with your finger. Put it in series, and the LED lights only while it's held.",
+    "When the power's on, hold the button down on the board (press and hold) to try it."
+  ],
+  "lesson": "A switch in series controls everything after it. Open: no loop, no current. Closed: the loop completes.",
+  "bin": [
+    {
+      "type": "resistor",
+      "value": 330,
+      "count": 1
+    },
+    {
+      "type": "led",
+      "color": "yellow",
+      "count": 2
+    },
+    {
+      "type": "button",
+      "count": 1
+    },
+    {
+      "type": "wire",
+      "count": null
+    }
+  ],
+  "goal": {
+    "kind": "button",
+    "min": 0.004,
+    "max": 0.025
+  }
+}

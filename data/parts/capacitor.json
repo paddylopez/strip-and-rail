@@ -1,0 +1,33 @@
+{
+  "id": "capacitor",
+  "name": "Ceramic capacitor",
+  "prefix": "C",
+  "footprint": {
+    "kind": "two-lead",
+    "span": [
+      0.9,
+      3.5
+    ]
+  },
+  "pins": [
+    {
+      "id": "1",
+      "name": "leg 1"
+    },
+    {
+      "id": "2",
+      "name": "leg 2"
+    }
+  ],
+  "params": {
+    "value": {
+      "unit": "F"
+    }
+  },
+  "model": {
+    "kind": "capacitor"
+  },
+  "draw": "capacitor",
+  "card": "ceramic",
+  "label": "{value:F} ceramic cap"
+}

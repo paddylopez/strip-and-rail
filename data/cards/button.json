@@ -1,0 +1,21 @@
+{
+  "id": "button",
+  "name": "Push Button",
+  "cost": "≈ 10¢",
+  "frame": "switch",
+  "type": "Switch — Momentary",
+  "rarity": "C",
+  "art": "button",
+  "symbol": "sym_button",
+  "rules": [
+    [
+      "Momentary",
+      "Closed only while held. Let go and the gap opens."
+    ],
+    [
+      "Its legs go in two different strips, or it's shorted out before you touch it."
+    ]
+  ],
+  "stats": "50 mA · 12 V",
+  "flavor": "The oldest user interface: press here."
+}

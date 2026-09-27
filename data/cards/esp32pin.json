@@ -1,0 +1,24 @@
+{
+  "id": "esp32pin",
+  "name": "ESP32 Wake Pin",
+  "cost": "≈ $5",
+  "frame": "ic",
+  "type": "Module — Microcontroller input",
+  "rarity": "U",
+  "art": "esp32",
+  "rules": [
+    [
+      "Reads",
+      "HIGH at 75% of the supply or above, LOW at 25% or below. In between it could read either way: don't design there."
+    ],
+    [
+      "Listens only",
+      "A high-impedance input draws almost nothing, so an open-collector output reaches it through a pull-up."
+    ],
+    [
+      "GPIO33 is an RTC pin: it can wake the ESP32 from deep sleep."
+    ]
+  ],
+  "stats": "VIH 0.75 · VDD",
+  "flavor": "Asleep at 10 µA. Awake in a millisecond, when something worth waking for happens."
+}

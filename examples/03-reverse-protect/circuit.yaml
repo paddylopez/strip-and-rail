@@ -1,0 +1,21 @@
+# A diode in series with the supply: if the supply is ever connected backwards, the diode blocks and
+# nothing gets hurt. The price is its forward drop, about 0.7 V, taken from everything after it.
+format: strip-and-rail/circuit@1
+title: Reverse-polarity protection
+about: D1 passes current only from anode to cathode. Connected the right way it costs ~0.7 V; backwards, it blocks.
+supply: { v: 5, ilim: 100m }
+
+parts:
+  D1:   { part: diode }
+  R1:   { part: resistor, value: 330 }
+  LED1: { part: led, color: yellow }
+
+nets:
+  IN:   [PSU.+, D1.A]            # the supply goes into the diode's anode...
+  VP:   [D1.K, R1.1]             # ...and comes out of its cathode (the banded end), 0.7 V lower
+  A:    [R1.2, LED1.A]
+  GND:  [LED1.K, PSU.-]
+
+win:
+  - wiring: nets
+  - goal: { kind: lit, count: 1, min: 4m, max: 25m }

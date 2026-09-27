@@ -1,0 +1,20 @@
+# The "hello, world" of electronics: a resistor and an LED across the supply.
+# Reading the schematic: every symbol with a designator (R1, LED1) becomes a line under `parts`.
+# Every junction of wires becomes a line under `nets`: which pins that wire touches.
+format: strip-and-rail/circuit@1
+title: Hello, LED
+about: A supply, a resistor to limit the current, and an LED. (5 V − 2 V) ÷ 330 Ω ≈ 9 mA.
+supply: { v: 5, ilim: 100m }
+
+parts:
+  R1:   { part: resistor, value: 330 }
+  LED1: { part: led, color: red }
+
+nets:
+  VCC: [PSU.+, R1.1]        # the wire from the supply's + to R1's first leg
+  A:   [R1.2, LED1.A]       # R1's other leg to the LED's anode (long leg)
+  GND: [LED1.K, PSU.-]      # the LED's cathode back to the supply's −
+
+win:
+  - wiring: nets                                   # joined exactly as above, any layout
+  - goal: { kind: lit, count: 1, min: 4m, max: 25m }   # and it actually lights

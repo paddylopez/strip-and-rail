@@ -1,0 +1,25 @@
+{
+  "id": "led",
+  "name": "LED",
+  "cost": "≈ 5¢",
+  "frame": "semi",
+  "type": "Semiconductor — Light-emitting diode",
+  "rarity": "C",
+  "art": "led",
+  "symbol": "sym_led",
+  "rules": [
+    [
+      "Polarised",
+      "Current flows long leg (anode, +) to short leg (cathode, −, the flat side). Backwards, it stays dark."
+    ],
+    [
+      "Needs a resistor",
+      "On its own it takes all the current it can get, and burns out."
+    ],
+    [
+      "Forward voltage: red 2.0 · yellow 2.05 · green 2.15 · blue 3.0 V."
+    ]
+  ],
+  "stats": "20 mA · {vf:V|2}",
+  "flavor": "Electrons drop into holes and give off the difference as light."
+}

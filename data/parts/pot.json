@@ -1,0 +1,37 @@
+{
+  "id": "pot",
+  "name": "Potentiometer",
+  "prefix": "RV",
+  "footprint": {
+    "kind": "row",
+    "pins": 3
+  },
+  "pins": [
+    {
+      "id": "1",
+      "name": "left leg",
+      "label": "1"
+    },
+    {
+      "id": "W",
+      "name": "middle leg (wiper)",
+      "label": "W"
+    },
+    {
+      "id": "3",
+      "name": "right leg",
+      "label": "3"
+    }
+  ],
+  "params": {
+    "value": {
+      "unit": "Ω"
+    }
+  },
+  "model": {
+    "kind": "pot"
+  },
+  "draw": "pot",
+  "card": "pot",
+  "label": "{value:Ω} pot"
+}

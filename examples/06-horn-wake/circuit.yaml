@@ -1,0 +1,38 @@
+# A real project: the wake circuit of a train-horn detector, an ESP32 that sleeps until something loud happens.
+# The ESP32 sleeps; this circuit turns "something loud" into GPIO33 going HIGH, which wakes it.
+# Read it as a data pipeline: MIC -> strip the offset (C1, R1) -> keep the peaks (D1) -> smooth (C2, R2)
+# -> compare with a threshold you set (R3, RV1) in U1 -> pull-up (R4) -> the wake pin.
+format: strip-and-rail/circuit@1
+title: "Horn detector: the wake circuit"
+about: Loud enough and GPIO33 goes HIGH. A horn wakes the ESP32; a conversation doesn't. RV1 sets the threshold (0–0.77 V; mid-way is 0.38 V).
+supply: { v: 3.3, ilim: 100m }
+cards: [envelope]
+
+parts:
+  MIC:  { part: tone }                      # stands in for the MAX9814 breakout
+  C1:   { part: capacitor, value: 1u }
+  R1:   { part: resistor, value: 100k }
+  D1:   { part: diode }
+  C2:   { part: electrolytic, value: 1u }
+  R2:   { part: resistor, value: 470k }
+  R3:   { part: resistor, value: 330k }
+  RV1:  { part: pot, value: 100k }
+  U1:   { part: lm393 }
+  C3:   { part: capacitor, value: 100n }    # decoupling, across the LM393's supply pins
+  R4:   { part: resistor, value: 10k }
+  ESP:  { part: esp32pin }
+
+nets:
+  VCC:  [PSU.+, MIC.VDD, R3.1, U1.8, U1.6, C3.1, R4.1]      # U1.6: the unused comparator's − input, tied high
+  GND:  [PSU.-, MIC.GND, R1.2, C2.-, R2.2, RV1.3, U1.4, U1.5, C3.2, ESP.GND]   # U1.5: its + input, tied low
+  AUDIO: [MIC.OUT, C1.1]
+  AC:   [C1.2, R1.1, D1.A]
+  ENV:  [D1.K, C2.+, R2.1, U1.3]           # the envelope, into IN+ of comparator A
+  TOP:  [R3.2, RV1.1]
+  THR:  [RV1.W, U1.2]                      # the threshold, into IN− of comparator A
+  WAKE: [U1.1, R4.2, ESP.GPIO]             # U1.7, the unused output, is in no net: it stays free
+
+win:
+  - wiring: nets
+  - goal: { kind: listen, sound: horn, expect: high }
+  - goal: { kind: listen, sound: talk, expect: low }

@@ -1,0 +1,21 @@
+{
+  "id": "diode",
+  "name": "Signal Diode",
+  "cost": "≈ 2¢",
+  "frame": "semi",
+  "type": "Semiconductor — Diode (1N4148)",
+  "rarity": "C",
+  "art": "diode",
+  "symbol": "sym_diode",
+  "rules": [
+    [
+      "One way",
+      "Current flows anode to cathode (the banded end). Backwards, it blocks."
+    ],
+    [
+      "Getting through costs about 0.6–0.7 V."
+    ]
+  ],
+  "stats": "150 mA · 0.7 V",
+  "flavor": "A check valve for current."
+}

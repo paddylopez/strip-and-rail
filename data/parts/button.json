@@ -1,0 +1,31 @@
+{
+  "id": "button",
+  "name": "Push button",
+  "prefix": "SW",
+  "footprint": {
+    "kind": "two-lead",
+    "span": [
+      1.9,
+      4.5
+    ]
+  },
+  "pins": [
+    {
+      "id": "1",
+      "name": "leg 1",
+      "label": "1"
+    },
+    {
+      "id": "2",
+      "name": "leg 2",
+      "label": "2"
+    }
+  ],
+  "model": {
+    "kind": "button",
+    "ron": 0.05
+  },
+  "draw": "button",
+  "card": "button",
+  "label": "Push button"
+}

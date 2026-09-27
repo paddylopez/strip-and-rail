@@ -1,0 +1,34 @@
+{
+  "id": "diode",
+  "name": "Diode",
+  "prefix": "D",
+  "footprint": {
+    "kind": "two-lead",
+    "span": [
+      2.9,
+      8.5
+    ]
+  },
+  "pins": [
+    {
+      "id": "A",
+      "name": "anode",
+      "label": "A"
+    },
+    {
+      "id": "K",
+      "name": "cathode (banded end)",
+      "label": "K"
+    }
+  ],
+  "model": {
+    "kind": "diode",
+    "rs": 0.5,
+    "is": 2.5e-09,
+    "n": 1.75,
+    "_comment": "1N4148-like"
+  },
+  "draw": "diode",
+  "card": "diode",
+  "label": "Diode"
+}
